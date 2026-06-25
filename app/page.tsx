@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { products } from "@/data/products";
 import ProductCard from "@/components/product/ProductCard";
 import Reveal from "@/components/ui/Reveal";
+import CategoryCarousel from "@/components/home/CategoryCarousel";
 
 const heroImg =
   "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=1600&q=80";
@@ -68,23 +69,20 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CATÉGORIES */}
+      {/* CATÉGORIES — carrousel défilable */}
       <section className="container-boutique py-16 md:py-24">
         <Reveal>
-          <div className="grid gap-6 md:grid-cols-2">
-            <CategoryCard
-              href="/robes"
-              title="Robes d'été"
-              subtitle="Lin, fleuri, slip dress, midi & mini"
-              img="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=80"
-            />
-            <CategoryCard
-              href="/accessoires"
-              title="Accessoires"
-              subtitle="Paille, raphia, lunettes & bijoux dorés"
-              img="https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=900&q=80"
-            />
+          <div className="mb-8 flex items-end justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-sage">
+                Explorer
+              </p>
+              <h2 className="mt-2 font-serif text-4xl font-semibold md:text-5xl">
+                Toutes nos catégories
+              </h2>
+            </div>
           </div>
+          <CategoryCarousel />
         </Reveal>
       </section>
 
@@ -146,6 +144,44 @@ export default function Home() {
         </div>
       </section>
 
+      {/* NOTRE HISTOIRE — teaser */}
+      <section className="container-boutique py-16 md:py-24">
+        <div className="grid items-center gap-10 md:grid-cols-2">
+          <Reveal>
+            <div className="relative aspect-[4/3] overflow-hidden rounded-lg shadow-card">
+              <Image
+                src="https://images.unsplash.com/photo-1503104834685-7205e8607eb9?auto=format&fit=crop&w=1200&q=80"
+                alt="Deux sœurs fondatrices d'Azalée dans le Sud-Ouest"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-sage">
+              Notre histoire
+            </p>
+            <h2 className="mt-4 font-serif text-4xl font-semibold leading-tight md:text-5xl">
+              Deux sœurs, un été
+              <br />
+              <span className="italic text-rose-deep">qui ne finit jamais</span>
+            </h2>
+            <p className="mt-5 max-w-md leading-relaxed text-muted">
+              Camille &amp; Léa ont grandi entre Agen et Toulouse, bercées par le
+              lin, les marchés du Sud et la lumière de la Méditerranée. Azalée est
+              né de cette envie : capturer la douceur d&apos;un été éternel.
+            </p>
+            <Link
+              href="/notre-histoire"
+              className="mt-8 inline-flex items-center gap-2 text-sage hover:text-sage-dark"
+            >
+              Découvrir notre histoire <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
       {/* NEWSLETTER */}
       <section className="bg-rose-powder/30">
         <div className="container-boutique py-16 text-center md:py-20">
@@ -180,40 +216,5 @@ export default function Home() {
         </div>
       </section>
     </>
-  );
-}
-
-function CategoryCard({
-  href,
-  title,
-  subtitle,
-  img,
-}: {
-  href: string;
-  title: string;
-  subtitle: string;
-  img: string;
-}) {
-  return (
-    <Link
-      href={href}
-      className="group relative block aspect-[4/3] overflow-hidden rounded-lg shadow-soft"
-    >
-      <Image
-        src={img}
-        alt={title}
-        fill
-        sizes="(max-width: 768px) 100vw, 50vw"
-        className="object-cover transition-transform duration-700 group-hover:scale-105"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-ink/55 to-transparent" />
-      <div className="absolute bottom-0 left-0 p-6 text-white md:p-8">
-        <h3 className="font-serif text-3xl font-semibold md:text-4xl">{title}</h3>
-        <p className="mt-1 text-sm text-white/85">{subtitle}</p>
-        <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium">
-          Découvrir <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-        </span>
-      </div>
-    </Link>
   );
 }

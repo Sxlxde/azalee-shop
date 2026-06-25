@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
+import AnnouncementBar from "@/components/layout/AnnouncementBar";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import CartDrawer from "@/components/cart/CartDrawer";
@@ -41,6 +42,7 @@ export default function RootLayout({
         >
           Aller au contenu
         </a>
+        <AnnouncementBar />
         <Navbar />
         <main id="main" className="min-h-screen">
           {children}
