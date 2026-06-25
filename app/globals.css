@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cream: #fbf8f5;
+  --sage: #8a9a7b;
+  --sage-dark: #6e7e5f;
+  --rose-powder: #e8c5c5;
+  --rose-deep: #c98b8b;
+  --ink: #3a3632;
+  --muted: #8c857c;
+  --line: #ece5dd;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-cream text-ink font-sans antialiased;
+  }
+  ::selection {
+    background-color: var(--rose-powder);
+    color: var(--ink);
+  }
+  *:focus-visible {
+    outline: 2px solid var(--sage);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .container-boutique {
+    @apply mx-auto w-full max-w-boutique px-5 sm:px-8 lg:px-12;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-sage px-6 py-3 text-sm font-medium tracking-wide text-white transition-all duration-200 hover:bg-sage-dark focus-visible:outline-offset-4 disabled:opacity-50;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-sage px-6 py-3 text-sm font-medium tracking-wide text-sage transition-all duration-200 hover:bg-sage hover:text-white;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-line bg-surface px-4 py-2 text-sm font-medium text-ink transition-colors duration-200 hover:border-sage hover:text-sage;
+  }
+  .tag-new {
+    @apply inline-block rounded-full bg-rose-powder px-3 py-1 text-[0.7rem] font-medium uppercase tracking-widest text-ink;
+  }
+  .tag-sale {
+    @apply inline-block rounded-full bg-rose-deep px-3 py-1 text-[0.7rem] font-medium uppercase tracking-widest text-white;
+  }
+  .price {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
