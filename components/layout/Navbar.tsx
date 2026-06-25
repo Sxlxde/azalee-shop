@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Heart, MapPin, Menu, Search, ShoppingBag, User, X } from "lucide-react";
+import { Heart, MapPin, Search, ShoppingBag, User, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "@/store/cart";
 import { useWishlist } from "@/store/wishlist";
@@ -16,6 +16,14 @@ const links = [
   { href: "/shorts", label: "Shorts" },
   { href: "/chemisiers", label: "Chemisiers" },
   { href: "/accessoires", label: "Accessoires" },
+];
+
+const mobileExtra = [
+  { href: "/favoris", label: "Mes favoris" },
+  { href: "/compte", label: "Mon compte" },
+  { href: "/magasins", label: "Nos magasins" },
+  { href: "/contact", label: "Contact & SAV" },
+  { href: "/notre-histoire", label: "Notre histoire" },
 ];
 
 export default function Navbar() {
@@ -34,22 +42,39 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Fermeture clavier (Esc) pour menu mobile + recherche
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMobileOpen(false);
+        setSearchOpen(false);
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, []);
+
+  // Verrou scroll quand drawer ouvert
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
+
   return (
     <header
       className={`sticky top-0 z-40 bg-cream/90 backdrop-blur-md transition-shadow ${
         scrolled ? "shadow-soft" : "border-b border-line"
       }`}
     >
-      {/* ── Top row ── */}
-      <div className="container-boutique flex h-16 items-center justify-between gap-4 md:h-20">
-        {/* Mobile burger */}
-        <button
-          className="md:hidden"
-          aria-label="Ouvrir le menu"
-          onClick={() => setMobileOpen(true)}
-        >
-          <Menu className="h-6 w-6" strokeWidth={1.5} />
-        </button>
+      {/* ── Top row : burger | logo · search · icons ── */}
+      <div className="container-boutique flex h-16 items-center gap-4 md:h-20">
+        {/* Burger (mobile) */}
+        <BurgerButton
+          open={mobileOpen}
+          onClick={() => setMobileOpen((o) => !o)}
+        />
 
         {/* Logo */}
         <Link
@@ -59,14 +84,13 @@ export default function Navbar() {
           Azalée
         </Link>
 
-        {/* Desktop search (right-center) */}
-        <div className="ml-auto hidden w-64 lg:block xl:w-72">
+        {/* Search — CENTRÉE (desktop) */}
+        <div className="mx-auto hidden w-full max-w-md px-4 lg:block">
           <SearchBox />
         </div>
 
         {/* Right actions */}
-        <div className="flex items-center gap-4 md:gap-5">
-          {/* Mobile search toggle */}
+        <div className="ml-auto flex items-center gap-4 md:gap-5">
           <button
             className="lg:hidden"
             aria-label="Rechercher"
@@ -93,11 +117,7 @@ export default function Navbar() {
               </span>
             )}
           </Link>
-          <Link
-            href="/compte"
-            aria-label="Mon compte"
-            className="hidden sm:block"
-          >
+          <Link href="/compte" aria-label="Mon compte" className="hidden sm:block">
             <User className="h-5 w-5" strokeWidth={1.5} />
           </Link>
           <button
@@ -140,16 +160,16 @@ export default function Navbar() {
         </ul>
       </nav>
 
-      {/* ── Mobile fullscreen search ── */}
+      {/* ── Mobile fullscreen search (padding symétrique) ── */}
       <AnimatePresence>
         {searchOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] bg-cream p-5 lg:hidden"
+            className="fixed inset-0 z-[60] bg-cream lg:hidden"
           >
-            <div className="mb-4 flex items-center gap-3">
+            <div className="flex items-center gap-3 px-5 py-5">
               <div className="flex-1">
                 <SearchBox autoFocus onNavigate={() => setSearchOpen(false)} />
               </div>
@@ -172,7 +192,7 @@ export default function Navbar() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 bg-ink/30 md:hidden"
+              className="fixed inset-0 top-16 z-50 bg-ink/30 md:hidden"
               onClick={() => setMobileOpen(false)}
             />
             <motion.aside
@@ -180,20 +200,19 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ type: "tween", duration: 0.3, ease: "easeOut" }}
-              className="fixed inset-y-0 left-0 z-50 w-72 overflow-y-auto bg-cream p-6 md:hidden"
+              className="fixed inset-y-0 left-0 top-16 z-50 w-80 max-w-[85vw] overflow-y-auto bg-cream px-6 pb-10 pt-6 md:hidden"
             >
-              <div className="mb-8 flex items-center justify-between">
-                <span className="font-serif text-2xl font-semibold">Azalée</span>
-                <button
-                  aria-label="Fermer le menu"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  <X className="h-6 w-6" strokeWidth={1.5} />
-                </button>
-              </div>
-              <div className="flex flex-col gap-5">
+              <motion.ul
+                initial="hidden"
+                animate="show"
+                variants={{
+                  hidden: {},
+                  show: { transition: { staggerChildren: 0.05 } },
+                }}
+                className="flex flex-col"
+              >
                 {links.map((l) => (
-                  <Link
+                  <MenuItem
                     key={l.href}
                     href={l.href}
                     onClick={() => setMobileOpen(false)}
@@ -202,42 +221,83 @@ export default function Navbar() {
                     }`}
                   >
                     {l.label}
-                  </Link>
+                  </MenuItem>
                 ))}
-                <hr className="border-line" />
-                <Link
-                  href="/favoris"
-                  onClick={() => setMobileOpen(false)}
-                  className="text-base text-ink"
-                >
-                  Mes favoris
-                </Link>
-                <Link
-                  href="/compte"
-                  onClick={() => setMobileOpen(false)}
-                  className="text-base text-ink"
-                >
-                  Mon compte
-                </Link>
-                <Link
-                  href="/magasins"
-                  onClick={() => setMobileOpen(false)}
-                  className="text-base text-ink"
-                >
-                  Nos magasins
-                </Link>
-                <Link
-                  href="/contact"
-                  onClick={() => setMobileOpen(false)}
-                  className="text-base text-ink"
-                >
-                  Contact & SAV
-                </Link>
-              </div>
+                <li className="my-4 h-px bg-line" />
+                {mobileExtra.map((l) => (
+                  <MenuItem
+                    key={l.href}
+                    href={l.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="text-base text-ink"
+                  >
+                    {l.label}
+                  </MenuItem>
+                ))}
+              </motion.ul>
             </motion.aside>
           </>
         )}
       </AnimatePresence>
     </header>
+  );
+}
+
+function MenuItem({
+  href,
+  onClick,
+  className,
+  children,
+}: {
+  href: string;
+  onClick: () => void;
+  className?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <motion.li
+      variants={{
+        hidden: { opacity: 0, x: -16 },
+        show: { opacity: 1, x: 0 },
+      }}
+      className="py-2"
+    >
+      <Link href={href} onClick={onClick} className={className}>
+        {children}
+      </Link>
+    </motion.li>
+  );
+}
+
+function BurgerButton({
+  open,
+  onClick,
+}: {
+  open: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+      aria-expanded={open}
+      className="relative grid h-6 w-6 place-items-center md:hidden"
+    >
+      <motion.span
+        animate={open ? { rotate: 45, y: 0 } : { rotate: 0, y: -6 }}
+        transition={{ duration: 0.25 }}
+        className="absolute h-0.5 w-6 rounded bg-ink"
+      />
+      <motion.span
+        animate={open ? { opacity: 0 } : { opacity: 1 }}
+        transition={{ duration: 0.2 }}
+        className="absolute h-0.5 w-6 rounded bg-ink"
+      />
+      <motion.span
+        animate={open ? { rotate: -45, y: 0 } : { rotate: 0, y: 6 }}
+        transition={{ duration: 0.25 }}
+        className="absolute h-0.5 w-6 rounded bg-ink"
+      />
+    </button>
   );
 }

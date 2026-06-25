@@ -4,7 +4,7 @@ import Catalog from "@/components/product/Catalog";
 import CategoryHeader from "@/components/product/CategoryHeader";
 
 export const metadata: Metadata = {
-  title: "Accessoires d'été — Azalée",
+  title: "Accessoires d'été - Azalée",
   description:
     "Chapeaux de paille, sacs en raphia, lunettes de soleil, sandales et bijoux dorés.",
 };

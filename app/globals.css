@@ -53,6 +53,94 @@
   .price {
     font-variant-numeric: tabular-nums;
   }
+
+  /* Marquee continu (bandeau n°2) */
+  .marquee-track {
+    animation: marquee 26s linear infinite;
+    will-change: transform;
+  }
+  .group:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  /* Titre de section avec soulignement animé au hover (style Altius) */
+  .section-underline {
+    position: relative;
+    display: inline-block;
+  }
+  .section-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.15em;
+    height: 2px;
+    width: 0;
+    background-color: var(--sage);
+    transition: width 0.3s ease;
+  }
+  .section-underline:hover::after,
+  .group:hover .section-underline::after {
+    width: 100%;
+  }
+
+  /* Flèche carrousel avec balayage au hover */
+  .arrow-sweep {
+    overflow: hidden;
+  }
+  .arrow-sweep svg {
+    transition: transform 0.35s ease;
+  }
+  .arrow-sweep.arrow-left:hover svg {
+    animation: sweep-left 0.5s ease;
+  }
+  .arrow-sweep.arrow-right:hover svg {
+    animation: sweep-right 0.5s ease;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes sweep-right {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(140%);
+    opacity: 0;
+  }
+  51% {
+    transform: translateX(-140%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes sweep-left {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-140%);
+    opacity: 0;
+  }
+  51% {
+    transform: translateX(140%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

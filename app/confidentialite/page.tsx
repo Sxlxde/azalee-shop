@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import LegalLayout from "@/components/ui/LegalLayout";
 
 export const metadata: Metadata = {
-  title: "Politique de confidentialité — Azalée",
+  title: "Politique de confidentialité - Azalée",
 };
 
 function Section({

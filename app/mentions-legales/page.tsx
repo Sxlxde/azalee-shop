@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import LegalLayout from "@/components/ui/LegalLayout";
 
 export const metadata: Metadata = {
-  title: "Mentions légales — Azalée",
+  title: "Mentions légales - Azalée",
 };
 
 function Section({

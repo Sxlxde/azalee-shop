@@ -4,7 +4,7 @@ import Catalog from "@/components/product/Catalog";
 import CategoryHeader from "@/components/product/CategoryHeader";
 
 export const metadata: Metadata = {
-  title: "Chemisiers d'été — Azalée",
+  title: "Chemisiers d'été - Azalée",
   description: "Chemisiers en lin, broderie anglaise, manches bouffantes et dos noué.",
 };
 

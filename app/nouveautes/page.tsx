@@ -4,7 +4,7 @@ import { getNew } from "@/data/products";
 import Catalog from "@/components/product/Catalog";
 
 export const metadata: Metadata = {
-  title: "Nouveautés été — Azalée",
+  title: "Nouveautés été - Azalée",
   description: "Les dernières arrivées de la collection été d'Azalée.",
 };
 

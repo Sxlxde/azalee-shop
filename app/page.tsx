@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { products } from "@/data/products";
-import ProductCard from "@/components/product/ProductCard";
 import Reveal from "@/components/ui/Reveal";
 import CategoryCarousel from "@/components/home/CategoryCarousel";
+import ProductCarousel from "@/components/home/ProductCarousel";
 
 const heroImg =
   "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=1600&q=80";
@@ -12,7 +12,7 @@ const lookImg =
   "https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=1400&q=80";
 
 export default function Home() {
-  const coups = products.filter((p) => p.tags.includes("coup de cœur")).slice(0, 4);
+  const coups = products.filter((p) => p.tags.includes("coup de cœur"));
 
   return (
     <>
@@ -20,7 +20,7 @@ export default function Home() {
       <section className="relative">
         <div className="absolute inset-0 bg-gradient-to-b from-rose-powder/30 via-cream to-cream" />
         <div className="container-boutique relative grid items-center gap-10 py-12 md:grid-cols-2 md:py-20">
-          <Reveal>
+          <Reveal className="text-center md:text-left">
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-sage">
               Collection été
             </p>
@@ -29,11 +29,11 @@ export default function Home() {
               <br />
               en <span className="italic text-sage">Azalée</span>
             </h1>
-            <p className="mt-6 max-w-md text-lg leading-relaxed text-muted">
+            <p className="mx-auto mt-6 max-w-md text-lg leading-relaxed text-muted md:mx-0">
               Robes de lin, imprimés fleuris et accessoires de paille. Une
               sélection romantique et solaire, pensée pour briller au soleil.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap justify-center gap-3 md:justify-start">
               <Link href="/robes" className="btn-primary">
                 Découvrir les robes <ArrowRight className="h-4 w-4" />
               </Link>
@@ -58,17 +58,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* BANDEAU NOUVEAUTÉS */}
-      <section className="border-y border-line bg-surface">
-        <div className="container-boutique flex flex-wrap items-center justify-center gap-x-8 gap-y-2 py-4 text-center text-sm text-muted">
-          <span>✿ Nouveautés été en ligne</span>
-          <span className="hidden sm:inline">·</span>
-          <span>Livraison offerte dès 80€ (démo)</span>
-          <span className="hidden sm:inline">·</span>
-          <span>Retours faciles sous 30 jours</span>
-        </div>
-      </section>
-
       {/* CATÉGORIES — carrousel défilable */}
       <section className="container-boutique py-16 md:py-24">
         <Reveal>
@@ -78,7 +67,7 @@ export default function Home() {
                 Explorer
               </p>
               <h2 className="mt-2 font-serif text-4xl font-semibold md:text-5xl">
-                Toutes nos catégories
+                <span className="section-underline">Toutes nos catégories</span>
               </h2>
             </div>
           </div>
@@ -125,23 +114,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* COUPS DE CŒUR */}
+      {/* COUPS DE CŒUR — carrousel */}
       <section className="container-boutique py-16 md:py-24">
         <Reveal>
-          <div className="mb-10 text-center">
+          <div className="group mb-10 text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-sage">
               La sélection
             </p>
             <h2 className="mt-3 font-serif text-4xl font-semibold md:text-5xl">
-              Nos coups de cœur
+              <span className="section-underline">Nos coups de cœur</span>
             </h2>
           </div>
+          <ProductCarousel products={coups} />
         </Reveal>
-        <div className="grid grid-cols-2 gap-x-5 gap-y-10 lg:grid-cols-4">
-          {coups.map((p) => (
-            <ProductCard key={p.id} product={p} />
-          ))}
-        </div>
       </section>
 
       {/* NOTRE HISTOIRE — teaser */}

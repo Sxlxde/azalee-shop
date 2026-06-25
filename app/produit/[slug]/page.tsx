@@ -3,11 +3,13 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChevronRight } from "lucide-react";
 import { getProduct, products } from "@/data/products";
+import { CATEGORY_META } from "@/lib/types";
 import { formatPrice } from "@/lib/utils";
 import ProductGallery from "@/components/product/ProductGallery";
 import AddToCart from "@/components/product/AddToCart";
 import WishlistButton from "@/components/product/WishlistButton";
 import Accordion from "@/components/ui/Accordion";
+import ClickCollectBadge from "@/components/ui/ClickCollectBadge";
 import ProductCard from "@/components/product/ProductCard";
 
 export function generateStaticParams() {
@@ -20,9 +22,9 @@ export function generateMetadata({
   params: { slug: string };
 }): Metadata {
   const product = getProduct(params.slug);
-  if (!product) return { title: "Produit — Azalée" };
+  if (!product) return { title: "Produit - Azalée" };
   return {
-    title: `${product.name} — Azalée`,
+    title: `${product.name} - Azalée`,
     description: product.description,
   };
 }
@@ -36,7 +38,8 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
     .slice(0, 4);
 
   const categoryLabel =
-    product.category === "robes" ? "Robes d'été" : "Accessoires";
+    CATEGORY_META.find((c) => c.slug === product.category)?.label ??
+    product.category;
 
   return (
     <div className="container-boutique py-8 md:py-12">
@@ -91,6 +94,8 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             <AddToCart product={product} showQty />
           </div>
 
+          <ClickCollectBadge className="mt-4" />
+
           <div className="mt-10">
             <Accordion
               items={[
@@ -117,7 +122,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
       {related.length > 0 && (
         <section className="mt-20 md:mt-28">
           <h2 className="mb-8 text-center font-serif text-3xl font-semibold md:text-4xl">
-            Tu aimeras aussi
+            <span className="section-underline">Tu aimeras aussi</span>
           </h2>
           <div className="grid grid-cols-2 gap-x-5 gap-y-10 lg:grid-cols-4">
             {related.map((p) => (

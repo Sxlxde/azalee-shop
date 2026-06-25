@@ -4,7 +4,7 @@ import Catalog from "@/components/product/Catalog";
 import CategoryHeader from "@/components/product/CategoryHeader";
 
 export const metadata: Metadata = {
-  title: "Shorts d'été — Azalée",
+  title: "Shorts d'été - Azalée",
   description: "Shorts en lin, taille haute, fluides et denim clair.",
 };
 

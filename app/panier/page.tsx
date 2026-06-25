@@ -8,6 +8,7 @@ import { Minus, Plus, Trash2, ShoppingBag } from "lucide-react";
 import { useCart } from "@/store/cart";
 import { formatPrice } from "@/lib/utils";
 import { useHasMounted } from "@/lib/useHasMounted";
+import ClickCollectBadge from "@/components/ui/ClickCollectBadge";
 
 const SHIPPING = 6.9;
 const FREE_FROM = 80;
@@ -188,6 +189,7 @@ export default function PanierPage() {
           >
             Passer commande
           </button>
+          <ClickCollectBadge className="mt-4" />
           <p className="mt-3 text-center text-xs text-muted">
             Boutique démo — aucun paiement réel ne sera demandé.
           </p>

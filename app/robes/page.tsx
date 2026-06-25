@@ -4,7 +4,7 @@ import Catalog from "@/components/product/Catalog";
 import CategoryHeader from "@/components/product/CategoryHeader";
 
 export const metadata: Metadata = {
-  title: "Robes d'été — Azalée",
+  title: "Robes d'été - Azalée",
   description:
     "Robes en lin, fleuries, slip dress, midi et mini. La collection été d'Azalée.",
 };

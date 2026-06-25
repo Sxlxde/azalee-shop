@@ -46,8 +46,8 @@ export default function CartDrawer() {
               <div className="flex flex-1 flex-col items-center justify-center gap-4 px-6 text-center">
                 <ShoppingBag className="h-10 w-10 text-muted" strokeWidth={1} />
                 <p className="text-muted">Votre panier est vide.</p>
-                <Link href="/robes" onClick={close} className="btn-primary">
-                  Découvrir les robes
+                <Link href="/nouveautes" onClick={close} className="btn-primary">
+                  Découvrir la boutique
                 </Link>
               </div>
             ) : (

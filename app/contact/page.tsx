@@ -31,6 +31,11 @@ const faq = [
     content:
       "Un e-mail de suivi vous est envoyé dès l'expédition. Vous retrouvez aussi vos commandes dans votre espace compte.",
   },
+  {
+    title: "Proposez-vous le Click & Collect ?",
+    content:
+      "Oui ! Le retrait en magasin est gratuit dans nos boutiques de Toulouse et d'Agen. Sélectionnez « Click & Collect » au moment de la commande, votre colis vous attend sous 2h. (Fonctionnalité simulée dans cette démo.)",
+  },
 ];
 
 export default function ContactPage() {

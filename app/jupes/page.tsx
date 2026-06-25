@@ -4,7 +4,7 @@ import Catalog from "@/components/product/Catalog";
 import CategoryHeader from "@/components/product/CategoryHeader";
 
 export const metadata: Metadata = {
-  title: "Jupes d'été — Azalée",
+  title: "Jupes d'été - Azalée",
   description: "Jupes midi, plissées, en lin et fluides. La collection été d'Azalée.",
 };
 

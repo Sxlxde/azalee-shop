@@ -32,18 +32,18 @@ export default function CategoryCarousel() {
 
   return (
     <div className="relative">
-      {/* Arrows (desktop) */}
+      {/* Arrows (desktop) — anim balayage au hover */}
       <button
         onClick={() => scrollBy(-1)}
         aria-label="Précédent"
-        className="absolute -left-4 top-1/2 z-10 hidden -translate-y-1/2 rounded-full border border-line bg-surface p-2 shadow-soft transition-colors hover:text-sage md:block"
+        className="arrow-sweep arrow-left absolute -left-4 top-1/2 z-10 hidden -translate-y-1/2 rounded-full border border-line bg-surface p-2 shadow-soft transition-colors hover:border-sage hover:text-sage md:block"
       >
         <ChevronLeft className="h-5 w-5" />
       </button>
       <button
         onClick={() => scrollBy(1)}
         aria-label="Suivant"
-        className="absolute -right-4 top-1/2 z-10 hidden -translate-y-1/2 rounded-full border border-line bg-surface p-2 shadow-soft transition-colors hover:text-sage md:block"
+        className="arrow-sweep arrow-right absolute -right-4 top-1/2 z-10 hidden -translate-y-1/2 rounded-full border border-line bg-surface p-2 shadow-soft transition-colors hover:border-sage hover:text-sage md:block"
       >
         <ChevronRight className="h-5 w-5" />
       </button>
@@ -70,7 +70,7 @@ export default function CategoryCarousel() {
             key={c.href}
             href={c.href}
             draggable={false}
-            className="group relative aspect-[3/4] w-64 shrink-0 snap-start overflow-hidden rounded-lg shadow-soft sm:w-72"
+            className="group relative aspect-[3/4] w-64 shrink-0 snap-start overflow-hidden rounded-lg shadow-soft transition-all duration-300 hover:scale-[1.03] hover:shadow-card sm:w-72"
           >
             <Image
               src={c.image}
@@ -78,7 +78,7 @@ export default function CategoryCarousel() {
               fill
               draggable={false}
               sizes="288px"
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              className="object-cover transition-transform duration-700 group-hover:scale-[1.08]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent" />
             <div className="absolute bottom-0 left-0 p-5 text-white">

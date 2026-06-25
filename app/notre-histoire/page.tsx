@@ -4,7 +4,7 @@ import Link from "next/link";
 import Reveal from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
-  title: "Notre histoire — Azalée",
+  title: "Notre histoire - Azalée",
   description:
     "Azalée, née de deux sœurs du Sud-Ouest amoureuses de l'été, du lin et de la Méditerranée.",
 };
