@@ -5,6 +5,7 @@ import { products } from "@/data/products";
 import Reveal from "@/components/ui/Reveal";
 import CategoryCarousel from "@/components/home/CategoryCarousel";
 import ProductCarousel from "@/components/home/ProductCarousel";
+import MarqueeBar from "@/components/layout/MarqueeBar";
 
 const heroImg =
   "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=1600&q=80";
@@ -57,6 +58,9 @@ export default function Home() {
           </Reveal>
         </div>
       </section>
+
+      {/* BANDEAU MARQUEE — entre hero et catégories */}
+      <MarqueeBar />
 
       {/* CATÉGORIES — carrousel défilable */}
       <section className="container-boutique py-16 md:py-24">

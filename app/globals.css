@@ -152,4 +152,9 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  /* Le marquee reste un défilement linéaire lent et non clignotant : on le garde
+     actif même en mode mouvement réduit (mouvement continu, non agressif). */
+  .marquee-track {
+    animation: marquee 26s linear infinite !important;
+  }
 }

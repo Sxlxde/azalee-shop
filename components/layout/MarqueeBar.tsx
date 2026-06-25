@@ -11,13 +11,12 @@ export default function MarqueeBar() {
     <div className="flex shrink-0 items-center" aria-hidden="true">
       {ITEMS.map((t) => (
         <span key={t} className="flex items-center">
-          <span className="px-3 text-rose-deep">❀</span>
+          <span className="px-4 text-rose-deep">❀</span>
           <span className="whitespace-nowrap text-[0.65rem] font-medium uppercase tracking-[0.25em] text-ink">
             {t}
           </span>
         </span>
       ))}
-      <span className="px-3 text-rose-deep">❀</span>
     </div>
   );
 

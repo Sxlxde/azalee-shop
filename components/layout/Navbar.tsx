@@ -68,8 +68,8 @@ export default function Navbar() {
         scrolled ? "shadow-soft" : "border-b border-line"
       }`}
     >
-      {/* ── Top row : burger | logo · search · icons ── */}
-      <div className="container-boutique flex h-16 items-center gap-4 md:h-20">
+      {/* ── Top row : burger | logo · search (centrée absolue) · icons ── */}
+      <div className="container-boutique relative flex h-16 items-center gap-4 md:h-20">
         {/* Burger (mobile) */}
         <BurgerButton
           open={mobileOpen}
@@ -84,8 +84,8 @@ export default function Navbar() {
           Azalée
         </Link>
 
-        {/* Search — CENTRÉE (desktop) */}
-        <div className="mx-auto hidden w-full max-w-md px-4 lg:block">
+        {/* Search — CENTRÉE au milieu de la page (desktop) */}
+        <div className="absolute left-1/2 hidden w-full max-w-md -translate-x-1/2 px-4 lg:block">
           <SearchBox />
         </div>
 
