@@ -196,70 +196,74 @@ export default function Navbar() {
         )}
       </AnimatePresence>
 
-      {/* ── Mobile drawer menu ── */}
+      {/* ── Mobile menu plein écran (tient sans scroll, indépendant des bandeaux) ── */}
       <AnimatePresence>
         {mobileOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 top-16 z-50 bg-ink/30 md:hidden"
-              onClick={() => setMobileOpen(false)}
-            />
-            <motion.aside
-              initial={{ x: "-100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "-100%" }}
-              transition={{ type: "tween", duration: 0.3, ease: "easeOut" }}
-              className="fixed inset-y-0 left-0 top-16 z-50 flex w-80 max-w-[85vw] flex-col overflow-y-auto bg-cream px-6 pb-6 pt-4 md:hidden"
-            >
-              <motion.ul
-                initial="hidden"
-                animate="show"
-                variants={{
-                  hidden: {},
-                  show: { transition: { staggerChildren: 0.05 } },
-                }}
-                className="flex flex-col"
+          <motion.div
+            initial={{ opacity: 0, x: "-100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "-100%" }}
+            transition={{ type: "tween", duration: 0.3, ease: "easeOut" }}
+            className="fixed inset-0 z-[60] flex flex-col bg-cream md:hidden"
+          >
+            {/* Barre haute : logo + fermeture (alignée avec la navbar) */}
+            <div className="flex h-16 shrink-0 items-center justify-between border-b border-line px-5">
+              <span className="font-serif text-3xl font-semibold tracking-tight">
+                Azalée
+              </span>
+              <button
+                onClick={() => setMobileOpen(false)}
+                aria-label="Fermer le menu"
               >
-                {mobileTop.map((l) => (
-                  <MenuItem
-                    key={l.href}
-                    href={l.href}
-                    onClick={() => setMobileOpen(false)}
-                    className={`font-serif text-xl ${
-                      l.highlight ? "text-rose-deep" : "text-ink"
-                    }`}
-                  >
-                    {l.label}
-                  </MenuItem>
-                ))}
-                <li className="my-2.5 h-px bg-line" />
-                {mobileCategories.map((l) => (
-                  <MenuItem
-                    key={l.href}
-                    href={l.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="font-serif text-xl text-ink"
-                  >
-                    {l.label}
-                  </MenuItem>
-                ))}
-                <li className="my-2.5 h-px bg-line" />
-                {mobileExtra.map((l) => (
-                  <MenuItem
-                    key={l.href}
-                    href={l.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="text-sm text-ink"
-                  >
-                    {l.label}
-                  </MenuItem>
-                ))}
-              </motion.ul>
-            </motion.aside>
-          </>
+                <X className="h-6 w-6" strokeWidth={1.5} />
+              </button>
+            </div>
+
+            <motion.ul
+              initial="hidden"
+              animate="show"
+              variants={{
+                hidden: {},
+                show: { transition: { staggerChildren: 0.05 } },
+              }}
+              className="flex flex-1 flex-col justify-center gap-0.5 overflow-y-auto px-6 py-4"
+            >
+              {mobileTop.map((l) => (
+                <MenuItem
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => setMobileOpen(false)}
+                  className={`font-serif text-2xl ${
+                    l.highlight ? "text-rose-deep" : "text-ink"
+                  }`}
+                >
+                  {l.label}
+                </MenuItem>
+              ))}
+              <li className="my-3 h-px bg-line" />
+              {mobileCategories.map((l) => (
+                <MenuItem
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="font-serif text-2xl text-ink"
+                >
+                  {l.label}
+                </MenuItem>
+              ))}
+              <li className="my-3 h-px bg-line" />
+              {mobileExtra.map((l) => (
+                <MenuItem
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="text-base text-ink"
+                >
+                  {l.label}
+                </MenuItem>
+              ))}
+            </motion.ul>
+          </motion.div>
         )}
       </AnimatePresence>
     </header>
