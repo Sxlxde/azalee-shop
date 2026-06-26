@@ -33,7 +33,6 @@ const mobileCategories = [
 ];
 const mobileExtra = [
   { href: "/compte", label: "Mon compte" },
-  { href: "/magasins", label: "Nos magasins" },
   { href: "/contact", label: "Contact & SAV" },
   { href: "/notre-histoire", label: "Notre histoire" },
 ];
@@ -240,7 +239,6 @@ export default function Navbar() {
                   key={l.href}
                   href={l.href}
                   onClick={() => setMobileOpen(false)}
-                  small
                 >
                   {l.label}
                 </MobileLink>
@@ -257,13 +255,11 @@ function MobileLink({
   href,
   onClick,
   highlight = false,
-  small = false,
   children,
 }: {
   href: string;
   onClick: () => void;
   highlight?: boolean;
-  small?: boolean;
   children: React.ReactNode;
 }) {
   return (
@@ -278,12 +274,8 @@ function MobileLink({
       <Link
         href={href}
         onClick={onClick}
-        className={`group flex items-center justify-between transition-colors ${
-          small
-            ? "py-2.5 text-base text-ink/80 hover:text-sage"
-            : `py-3 font-serif text-2xl hover:text-sage ${
-                highlight ? "text-rose-deep" : "text-ink"
-              }`
+        className={`group flex items-center justify-between py-3 font-serif text-2xl transition-colors hover:text-sage ${
+          highlight ? "text-rose-deep" : "text-ink"
         }`}
       >
         {children}
