@@ -34,7 +34,6 @@ const mobileCategories = [
 const mobileExtra = [
   { href: "/compte", label: "Mon compte" },
   { href: "/contact", label: "Contact & SAV" },
-  { href: "/notre-histoire", label: "Notre histoire" },
 ];
 
 export default function Navbar() {
@@ -274,7 +273,7 @@ function MobileLink({
       <Link
         href={href}
         onClick={onClick}
-        className={`group flex items-center justify-between py-3 font-serif text-2xl transition-colors hover:text-sage ${
+        className={`group flex items-center justify-between py-2.5 font-serif text-2xl transition-colors hover:text-sage ${
           highlight ? "text-rose-deep" : "text-ink"
         }`}
       >
