@@ -84,9 +84,10 @@ export default function SearchBox({
             fill="none"
             stroke="var(--rose-powder)"
             strokeWidth="1.5"
+            strokeLinejoin="round"
             pathLength={1}
-            strokeDasharray={1}
-            strokeDashoffset={focused ? 0 : 1}
+            strokeDasharray="1.04"
+            strokeDashoffset={focused ? 0 : 1.04}
             style={{ transition: "stroke-dashoffset 0.55s ease" }}
           />
         </svg>
