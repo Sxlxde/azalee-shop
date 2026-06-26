@@ -11,7 +11,7 @@ export default function ClickCollectBadge({
     >
       <Store className="h-4 w-4 shrink-0 text-sage" strokeWidth={1.5} />
       <span>
-        <strong className="font-medium">Click &amp; Collect</strong> — retrait
+        <strong className="font-medium">Click &amp; Collect</strong> - retrait
         gratuit à Toulouse &amp; Agen
       </span>
     </div>

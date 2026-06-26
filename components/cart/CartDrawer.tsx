@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { Minus, Plus, ShoppingBag, Trash2, X } from "lucide-react";
+import { Heart, Minus, Plus, ShoppingBag, Trash2, X } from "lucide-react";
 import { useCart } from "@/store/cart";
 import { formatPrice } from "@/lib/utils";
 
@@ -48,6 +48,13 @@ export default function CartDrawer() {
                 <p className="text-muted">Votre panier est vide.</p>
                 <Link href="/nouveautes" onClick={close} className="btn-primary">
                   Découvrir la boutique
+                </Link>
+                <Link
+                  href="/favoris"
+                  onClick={close}
+                  className="inline-flex items-center gap-2 text-sm text-rose-deep hover:text-sage"
+                >
+                  <Heart className="h-4 w-4" /> Mes favoris
                 </Link>
               </div>
             ) : (
@@ -124,6 +131,13 @@ export default function CartDrawer() {
                     className="btn-primary w-full"
                   >
                     Voir le panier
+                  </Link>
+                  <Link
+                    href="/favoris"
+                    onClick={close}
+                    className="mt-2 flex w-full items-center justify-center gap-2 rounded-lg border border-rose-deep px-4 py-2.5 text-sm font-medium text-rose-deep transition-colors hover:bg-rose-deep hover:text-white"
+                  >
+                    <Heart className="h-4 w-4" /> Mes favoris
                   </Link>
                   <button
                     onClick={close}

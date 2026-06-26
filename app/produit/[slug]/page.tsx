@@ -110,7 +110,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 {
                   title: "Livraison & retours",
                   content:
-                    "Livraison offerte dès 80€ d'achat, sous 2 à 4 jours ouvrés. Retours gratuits sous 30 jours. (Boutique de démonstration — aucune commande réelle.)",
+                    "Livraison offerte dès 80€ d'achat, sous 2 à 4 jours ouvrés. Retours gratuits sous 30 jours. (Boutique de démonstration - aucune commande réelle.)",
                 },
               ]}
             />
@@ -122,7 +122,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
       {related.length > 0 && (
         <section className="mt-20 md:mt-28">
           <h2 className="mb-8 text-center font-serif text-3xl font-semibold md:text-4xl">
-            <span className="section-underline">Tu aimeras aussi</span>
+            Tu aimeras aussi
           </h2>
           <div className="grid grid-cols-2 gap-x-5 gap-y-10 lg:grid-cols-4">
             {related.map((p) => (

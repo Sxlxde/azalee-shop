@@ -9,7 +9,7 @@ const faq = [
   {
     title: "Quels sont les délais de livraison ?",
     content:
-      "Livraison sous 2 à 4 jours ouvrés en France métropolitaine, offerte dès 80€ d'achat. (Démo — aucune commande réelle.)",
+      "Livraison sous 2 à 4 jours ouvrés en France métropolitaine, offerte dès 80€ d'achat. (Démo - aucune commande réelle.)",
   },
   {
     title: "Comment retourner un article ?",
@@ -67,7 +67,7 @@ export default function ContactPage() {
               <Check className="mx-auto h-8 w-8 text-sage" />
               <p className="mt-3 font-serif text-xl">Message envoyé 🌸</p>
               <p className="mt-1 text-sm text-muted">
-                Merci ! Nous revenons vers vous sous 24h. (Démo — rien
+                Merci ! Nous revenons vers vous sous 24h. (Démo - rien
                 n&apos;est réellement envoyé.)
               </p>
               <button
@@ -115,7 +115,7 @@ export default function ContactPage() {
               <Phone className="h-4 w-4 text-sage" /> 05 61 00 00 12
             </p>
             <p className="flex items-center gap-2">
-              <Clock className="h-4 w-4 text-sage" /> Lun–Sam, 9h–18h · réponse
+              <Clock className="h-4 w-4 text-sage" /> Lun-Sam, 9h-18h · réponse
               sous 24h
             </p>
           </div>

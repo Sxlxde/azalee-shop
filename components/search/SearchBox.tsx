@@ -19,6 +19,7 @@ export default function SearchBox({
 }) {
   const [q, setQ] = useState("");
   const [open, setOpen] = useState(false);
+  const [focused, setFocused] = useState(false);
   const router = useRouter();
   const ref = useRef<HTMLDivElement>(null);
 
@@ -58,11 +59,37 @@ export default function SearchBox({
             setQ(e.target.value);
             setOpen(true);
           }}
-          onFocus={() => setOpen(true)}
+          onFocus={() => {
+            setOpen(true);
+            setFocused(true);
+          }}
+          onBlur={() => setFocused(false)}
           placeholder="Rechercher"
           aria-label="Rechercher un produit"
-          className="w-full rounded-full border border-line bg-surface py-2 pl-9 pr-9 text-sm focus:border-sage focus:outline-none"
+          className="w-full rounded-full border border-line bg-surface py-2 pl-9 pr-9 text-sm outline-none focus:outline-none"
         />
+        {/* Contour sauge qui se dessine progressivement autour de la barre au focus */}
+        <svg
+          aria-hidden="true"
+          preserveAspectRatio="none"
+          className="pointer-events-none absolute inset-0 h-full w-full overflow-visible"
+        >
+          <rect
+            x="0"
+            y="0"
+            width="100%"
+            height="100%"
+            rx="9999"
+            ry="9999"
+            fill="none"
+            stroke="var(--sage)"
+            strokeWidth="1.5"
+            pathLength={1}
+            strokeDasharray={1}
+            strokeDashoffset={focused ? 0 : 1}
+            style={{ transition: "stroke-dashoffset 0.55s ease" }}
+          />
+        </svg>
         {q && (
           <button
             type="button"

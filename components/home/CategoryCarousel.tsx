@@ -32,25 +32,25 @@ export default function CategoryCarousel() {
 
   return (
     <div className="relative">
-      {/* Arrows (desktop) — anim balayage au hover */}
+      {/* Arrows (mobile + desktop) — anim balayage au hover */}
       <button
         onClick={() => scrollBy(-1)}
         aria-label="Précédent"
-        className="arrow-sweep arrow-left absolute -left-4 top-1/2 z-10 hidden -translate-y-1/2 rounded-full border border-line bg-surface p-2 shadow-soft transition-colors hover:border-sage hover:text-sage md:block"
+        className="arrow-sweep arrow-left absolute left-0 top-1/2 z-10 -translate-y-1/2 rounded-full border border-line bg-surface/90 p-2 shadow-soft backdrop-blur transition-colors hover:border-sage hover:text-sage md:-left-4"
       >
         <ChevronLeft className="h-5 w-5" />
       </button>
       <button
         onClick={() => scrollBy(1)}
         aria-label="Suivant"
-        className="arrow-sweep arrow-right absolute -right-4 top-1/2 z-10 hidden -translate-y-1/2 rounded-full border border-line bg-surface p-2 shadow-soft transition-colors hover:border-sage hover:text-sage md:block"
+        className="arrow-sweep arrow-right absolute right-0 top-1/2 z-10 -translate-y-1/2 rounded-full border border-line bg-surface/90 p-2 shadow-soft backdrop-blur transition-colors hover:border-sage hover:text-sage md:-right-4"
       >
         <ChevronRight className="h-5 w-5" />
       </button>
 
       <div
         ref={scroller}
-        className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="flex snap-x snap-mandatory gap-5 overflow-x-auto px-10 pb-4 [scrollbar-width:none] md:px-0 [&::-webkit-scrollbar]:hidden"
         onMouseDown={(e) => {
           setDrag({
             active: true,
@@ -70,7 +70,7 @@ export default function CategoryCarousel() {
             key={c.href}
             href={c.href}
             draggable={false}
-            className="group relative aspect-[3/4] w-64 shrink-0 snap-start overflow-hidden rounded-lg shadow-soft transition-all duration-300 hover:scale-[1.03] hover:shadow-card sm:w-72"
+            className="group relative aspect-[3/4] w-64 shrink-0 snap-center overflow-hidden rounded-lg shadow-soft transition-all duration-300 hover:scale-[1.03] hover:shadow-card sm:w-72 md:snap-start"
           >
             <Image
               src={c.image}

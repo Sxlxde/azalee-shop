@@ -35,11 +35,11 @@ export default function Home() {
               sélection romantique et solaire, pensée pour briller au soleil.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3 md:justify-start">
-              <Link href="/robes" className="btn-primary">
-                Découvrir les robes <ArrowRight className="h-4 w-4" />
+              <Link href="/nouveautes" className="btn-primary">
+                Découvrir les nouveautés <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link href="/accessoires" className="btn-secondary">
-                Les accessoires
+              <Link href="/robes" className="btn-secondary">
+                Voir les robes
               </Link>
             </div>
           </Reveal>
@@ -71,7 +71,7 @@ export default function Home() {
                 Explorer
               </p>
               <h2 className="mt-2 font-serif text-4xl font-semibold md:text-5xl">
-                <span className="section-underline">Toutes nos catégories</span>
+                Toutes nos catégories
               </h2>
             </div>
           </div>
@@ -126,7 +126,7 @@ export default function Home() {
               La sélection
             </p>
             <h2 className="mt-3 font-serif text-4xl font-semibold md:text-5xl">
-              <span className="section-underline">Nos coups de cœur</span>
+              Nos coups de cœur
             </h2>
           </div>
           <ProductCarousel products={coups} />
@@ -200,7 +200,7 @@ export default function Home() {
                 Je m&apos;inscris
               </button>
             </form>
-            <p className="mt-3 text-xs text-muted">Démo — aucun e-mail envoyé.</p>
+            <p className="mt-3 text-xs text-muted">Démo - aucun e-mail envoyé.</p>
           </Reveal>
         </div>
       </section>

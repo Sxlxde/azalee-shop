@@ -18,8 +18,20 @@ const links = [
   { href: "/accessoires", label: "Accessoires" },
 ];
 
+// Menu mobile : en HAUT favoris + nouveautés, puis tous les types de vêtements,
+// puis le reste sous un séparateur.
+const mobileTop = [
+  { href: "/favoris", label: "Mes favoris", highlight: false },
+  { href: "/nouveautes", label: "Nouveautés", highlight: true },
+];
+const mobileCategories = [
+  { href: "/robes", label: "Robes d'été" },
+  { href: "/jupes", label: "Jupes" },
+  { href: "/shorts", label: "Shorts" },
+  { href: "/chemisiers", label: "Chemisiers" },
+  { href: "/accessoires", label: "Accessoires" },
+];
 const mobileExtra = [
-  { href: "/favoris", label: "Mes favoris" },
   { href: "/compte", label: "Mon compte" },
   { href: "/magasins", label: "Nos magasins" },
   { href: "/contact", label: "Contact & SAV" },
@@ -169,7 +181,7 @@ export default function Navbar() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[60] bg-cream lg:hidden"
           >
-            <div className="flex items-center gap-3 px-5 py-5">
+            <div className="flex h-16 items-center gap-3 border-b border-line px-5">
               <div className="flex-1">
                 <SearchBox autoFocus onNavigate={() => setSearchOpen(false)} />
               </div>
@@ -211,7 +223,7 @@ export default function Navbar() {
                 }}
                 className="flex flex-col"
               >
-                {links.map((l) => (
+                {mobileTop.map((l) => (
                   <MenuItem
                     key={l.href}
                     href={l.href}
@@ -219,6 +231,17 @@ export default function Navbar() {
                     className={`font-serif text-2xl ${
                       l.highlight ? "text-rose-deep" : "text-ink"
                     }`}
+                  >
+                    {l.label}
+                  </MenuItem>
+                ))}
+                <li className="my-4 h-px bg-line" />
+                {mobileCategories.map((l) => (
+                  <MenuItem
+                    key={l.href}
+                    href={l.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="font-serif text-2xl text-ink"
                   >
                     {l.label}
                   </MenuItem>

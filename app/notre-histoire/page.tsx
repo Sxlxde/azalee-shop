@@ -93,7 +93,7 @@ export default function NotreHistoirePage() {
             dans la simplicité d&apos;une matière noble portée avec liberté.
           </p>
           <p className="mt-4 leading-relaxed text-muted">
-            Chaque pièce Azalée est pensée comme un souvenir d&apos;été — légère,
+            Chaque pièce Azalée est pensée comme un souvenir d&apos;été - légère,
             sincère, faite pour durer plus qu&apos;une saison.
           </p>
         </Reveal>

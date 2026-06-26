@@ -25,7 +25,7 @@ const body = Inter({
 export const metadata: Metadata = {
   title: "Azalée - L'été se porte en Azalée",
   description:
-    "Boutique féminine de robes et accessoires d'été. Lin, fleuri, paille et bijoux dorés — une sélection romantique et solaire.",
+    "Boutique féminine de robes et accessoires d'été. Lin, fleuri, paille et bijoux dorés - une sélection romantique et solaire.",
 };
 
 export default function RootLayout({

@@ -13,7 +13,7 @@ export default function CategoryHeader({
         {eyebrow}
       </p>
       <h1 className="mt-3 font-serif text-5xl font-semibold md:text-6xl">
-        <span className="section-underline">{title}</span>
+        {title}
       </h1>
       <p className="mx-auto mt-4 max-w-xl text-muted">{subtitle}</p>
     </div>

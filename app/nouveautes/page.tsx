@@ -32,7 +32,7 @@ export default function NouveautesPage() {
           </h1>
           <p className="mt-3 max-w-lg text-white/85">
             Les pièces qui font battre notre cœur cette saison. Lin, fleurs et
-            lumière du Sud — à découvrir avant tout le monde.
+            lumière du Sud - à découvrir avant tout le monde.
           </p>
         </div>
       </section>

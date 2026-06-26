@@ -103,7 +103,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-line pt-6 text-xs text-muted md:flex-row">
-          <p>© {new Date().getFullYear()} Azalée — Boutique démo (portfolio).</p>
+          <p>© {new Date().getFullYear()} Azalée - Boutique démo (portfolio).</p>
           <div className="flex items-center gap-3">
             <span>Paiements acceptés :</span>
             <div className="flex gap-1.5">

@@ -116,7 +116,7 @@ export default function ComptePage() {
               <Link href="/confidentialite" className="text-sage underline">
                 politique de confidentialité
               </Link>
-              . Boutique démo — aucune donnée sensible n&apos;est conservée.
+              . Boutique démo - aucune donnée sensible n&apos;est conservée.
             </p>
           </motion.form>
         </AnimatePresence>

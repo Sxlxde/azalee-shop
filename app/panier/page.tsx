@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Minus, Plus, Trash2, ShoppingBag } from "lucide-react";
+import { Minus, Plus, Trash2, ShoppingBag, Heart } from "lucide-react";
 import { useCart } from "@/store/cart";
 import { formatPrice } from "@/lib/utils";
 import { useHasMounted } from "@/lib/useHasMounted";
@@ -41,7 +41,7 @@ export default function PanierPage() {
         </h1>
         <p className="mt-4 max-w-md text-muted">
           Votre commande de démonstration a bien été enregistrée. Aucun paiement
-          n&apos;a été effectué — il s&apos;agit d&apos;une boutique vitrine.
+          n&apos;a été effectué - il s&apos;agit d&apos;une boutique vitrine.
         </p>
         <Link href="/robes" className="btn-primary mt-8">
           Continuer mes achats
@@ -68,6 +68,12 @@ export default function PanierPage() {
             Les accessoires
           </Link>
         </div>
+        <Link
+          href="/favoris"
+          className="mt-4 inline-flex items-center gap-2 text-sm text-rose-deep hover:text-sage"
+        >
+          <Heart className="h-4 w-4" /> Voir mes favoris
+        </Link>
       </div>
     );
   }
@@ -189,9 +195,15 @@ export default function PanierPage() {
           >
             Passer commande
           </button>
+          <Link
+            href="/favoris"
+            className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg border border-rose-deep px-4 py-2.5 text-sm font-medium text-rose-deep transition-colors hover:bg-rose-deep hover:text-white"
+          >
+            <Heart className="h-4 w-4" /> Mes favoris
+          </Link>
           <ClickCollectBadge className="mt-4" />
           <p className="mt-3 text-center text-xs text-muted">
-            Boutique démo — aucun paiement réel ne sera demandé.
+            Boutique démo - aucun paiement réel ne sera demandé.
           </p>
         </aside>
       </div>
