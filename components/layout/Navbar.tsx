@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Heart, MapPin, Search, ShoppingBag, User, X } from "lucide-react";
+import { ChevronRight, Heart, MapPin, Search, ShoppingBag, User, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "@/store/cart";
 import { useWishlist } from "@/store/wishlist";
@@ -196,71 +196,54 @@ export default function Navbar() {
         )}
       </AnimatePresence>
 
-      {/* ── Mobile menu plein écran (tient sans scroll, indépendant des bandeaux) ── */}
+      {/* ── Menu mobile : déroule du haut sous la navbar (style Altius/Jules) ── */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, x: "-100%" }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: "-100%" }}
-            transition={{ type: "tween", duration: 0.3, ease: "easeOut" }}
-            className="fixed inset-0 z-[60] flex flex-col bg-cream md:hidden"
+            id="menu-mobile"
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.24, ease: "easeOut" }}
+            className="absolute inset-x-0 top-full z-50 max-h-[calc(100vh-4rem)] overflow-y-auto border-t border-line bg-cream shadow-card md:hidden"
           >
-            {/* Barre haute : logo + fermeture (alignée avec la navbar) */}
-            <div className="flex h-16 shrink-0 items-center justify-between border-b border-line px-5">
-              <span className="font-serif text-3xl font-semibold tracking-tight">
-                Azalée
-              </span>
-              <button
-                onClick={() => setMobileOpen(false)}
-                aria-label="Fermer le menu"
-              >
-                <X className="h-6 w-6" strokeWidth={1.5} />
-              </button>
-            </div>
-
             <motion.ul
               initial="hidden"
               animate="show"
               variants={{
                 hidden: {},
-                show: { transition: { staggerChildren: 0.05 } },
+                show: { transition: { staggerChildren: 0.045, delayChildren: 0.05 } },
               }}
-              className="flex flex-1 flex-col justify-center gap-0.5 overflow-y-auto px-6 py-4"
+              className="container-boutique flex flex-col py-2"
             >
               {mobileTop.map((l) => (
-                <MenuItem
+                <MobileLink
                   key={l.href}
                   href={l.href}
                   onClick={() => setMobileOpen(false)}
-                  className={`font-serif text-2xl ${
-                    l.highlight ? "text-rose-deep" : "text-ink"
-                  }`}
+                  highlight={l.highlight}
                 >
                   {l.label}
-                </MenuItem>
+                </MobileLink>
               ))}
-              <li className="my-3 h-px bg-line" />
               {mobileCategories.map((l) => (
-                <MenuItem
+                <MobileLink
                   key={l.href}
                   href={l.href}
                   onClick={() => setMobileOpen(false)}
-                  className="font-serif text-2xl text-ink"
                 >
                   {l.label}
-                </MenuItem>
+                </MobileLink>
               ))}
-              <li className="my-3 h-px bg-line" />
               {mobileExtra.map((l) => (
-                <MenuItem
+                <MobileLink
                   key={l.href}
                   href={l.href}
                   onClick={() => setMobileOpen(false)}
-                  className="text-base text-ink"
+                  small
                 >
                   {l.label}
-                </MenuItem>
+                </MobileLink>
               ))}
             </motion.ul>
           </motion.div>
@@ -270,27 +253,41 @@ export default function Navbar() {
   );
 }
 
-function MenuItem({
+function MobileLink({
   href,
   onClick,
-  className,
+  highlight = false,
+  small = false,
   children,
 }: {
   href: string;
   onClick: () => void;
-  className?: string;
+  highlight?: boolean;
+  small?: boolean;
   children: React.ReactNode;
 }) {
   return (
     <motion.li
       variants={{
-        hidden: { opacity: 0, x: -16 },
-        show: { opacity: 1, x: 0 },
+        hidden: { opacity: 0, y: -10 },
+        show: { opacity: 1, y: 0 },
       }}
-      className="py-1.5"
+      transition={{ duration: 0.25, ease: "easeOut" }}
+      className="border-b border-line/70 last:border-b-0"
     >
-      <Link href={href} onClick={onClick} className={className}>
+      <Link
+        href={href}
+        onClick={onClick}
+        className={`group flex items-center justify-between transition-colors ${
+          small
+            ? "py-2.5 text-base text-ink/80 hover:text-sage"
+            : `py-3 font-serif text-2xl hover:text-sage ${
+                highlight ? "text-rose-deep" : "text-ink"
+              }`
+        }`}
+      >
         {children}
+        <ChevronRight className="h-4 w-4 text-muted transition-transform group-hover:translate-x-1 group-hover:text-sage" />
       </Link>
     </motion.li>
   );
