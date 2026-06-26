@@ -1,6 +1,6 @@
 const ITEMS = [
   "Nouveautés été en ligne",
-  "Livraison offerte dès 80€ (démo)",
+  "Livraison offerte dès 80€",
   "Retours faciles sous 30 jours",
 ];
 

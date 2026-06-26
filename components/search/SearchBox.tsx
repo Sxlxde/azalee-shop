@@ -66,7 +66,7 @@ export default function SearchBox({
           onBlur={() => setFocused(false)}
           placeholder="Rechercher"
           aria-label="Rechercher un produit"
-          className="w-full rounded-full border border-line bg-surface py-2 pl-9 pr-9 text-sm outline-none focus:outline-none"
+          className="h-10 w-full rounded-full border border-line bg-surface pl-9 pr-9 text-sm outline-none focus:outline-none"
         />
         {/* Contour sauge qui se dessine progressivement autour de la barre au focus */}
         <svg
@@ -78,11 +78,11 @@ export default function SearchBox({
             x="0"
             y="0"
             width="100%"
-            height="100%"
-            rx="9999"
-            ry="9999"
+            height="40"
+            rx="20"
+            ry="20"
             fill="none"
-            stroke="var(--sage)"
+            stroke="var(--rose-powder)"
             strokeWidth="1.5"
             pathLength={1}
             strokeDasharray={1}

@@ -212,7 +212,7 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ type: "tween", duration: 0.3, ease: "easeOut" }}
-              className="fixed inset-y-0 left-0 top-16 z-50 w-80 max-w-[85vw] overflow-y-auto bg-cream px-6 pb-10 pt-6 md:hidden"
+              className="fixed inset-y-0 left-0 top-16 z-50 flex w-80 max-w-[85vw] flex-col overflow-y-auto bg-cream px-6 pb-6 pt-4 md:hidden"
             >
               <motion.ul
                 initial="hidden"
@@ -228,31 +228,31 @@ export default function Navbar() {
                     key={l.href}
                     href={l.href}
                     onClick={() => setMobileOpen(false)}
-                    className={`font-serif text-2xl ${
+                    className={`font-serif text-xl ${
                       l.highlight ? "text-rose-deep" : "text-ink"
                     }`}
                   >
                     {l.label}
                   </MenuItem>
                 ))}
-                <li className="my-4 h-px bg-line" />
+                <li className="my-2.5 h-px bg-line" />
                 {mobileCategories.map((l) => (
                   <MenuItem
                     key={l.href}
                     href={l.href}
                     onClick={() => setMobileOpen(false)}
-                    className="font-serif text-2xl text-ink"
+                    className="font-serif text-xl text-ink"
                   >
                     {l.label}
                   </MenuItem>
                 ))}
-                <li className="my-4 h-px bg-line" />
+                <li className="my-2.5 h-px bg-line" />
                 {mobileExtra.map((l) => (
                   <MenuItem
                     key={l.href}
                     href={l.href}
                     onClick={() => setMobileOpen(false)}
-                    className="text-base text-ink"
+                    className="text-sm text-ink"
                   >
                     {l.label}
                   </MenuItem>
@@ -283,7 +283,7 @@ function MenuItem({
         hidden: { opacity: 0, x: -16 },
         show: { opacity: 1, x: 0 },
       }}
-      className="py-2"
+      className="py-1.5"
     >
       <Link href={href} onClick={onClick} className={className}>
         {children}

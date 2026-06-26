@@ -26,8 +26,14 @@ export default function CategoryCarousel() {
   const scroller = useRef<HTMLDivElement>(null);
   const [drag, setDrag] = useState({ active: false, startX: 0, scroll: 0 });
 
+  // Défile d'UNE card (largeur réelle du 1er enfant + le gap).
   const scrollBy = (dir: 1 | -1) => {
-    scroller.current?.scrollBy({ left: dir * 320, behavior: "smooth" });
+    const el = scroller.current;
+    if (!el) return;
+    const first = el.firstElementChild as HTMLElement | null;
+    const gap = 20; // gap-5
+    const amount = first ? first.offsetWidth + gap : 320;
+    el.scrollBy({ left: dir * amount, behavior: "smooth" });
   };
 
   return (
